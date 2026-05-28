@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0A0A0A] text-slate-100;
+  }
+  /* Marquee Animation */
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    position: relative;
+    width: 100%;
+    background-color: #111;
+    border-bottom: 1px solid #333;
+    padding: 10px 0;
+  }
+  
+  .marquee-content {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-content:hover {
+    animation-play-state: paused;
+  }
+  
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+/* Professional Grid Background */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+/* Custom markdown styling for dark theme - Strict Monochrome */
+.prose {
+  @apply text-slate-300 text-[1.05rem] leading-[1.8];
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply text-white font-extrabold tracking-tight mb-5 mt-8;
+}
+.prose h1 { @apply text-4xl; }
+.prose h2 { @apply text-2xl border-b border-slate-800 pb-2; }
+.prose h3 { @apply text-xl text-slate-200; }
+.prose p {
+  @apply mb-6;
+}
+.prose pre {
+  @apply bg-[#111111] p-5 rounded-lg overflow-x-auto my-6 border border-slate-800 shadow-xl;
+}
+.prose code {
+  @apply text-slate-200 bg-slate-800 px-1.5 py-0.5 rounded text-[0.9em] font-mono border border-slate-700;
+}
+.prose pre code {
+  @apply text-slate-300 bg-transparent p-0 border-none text-[0.95em];
+}
+.prose a {
+  @apply text-white hover:text-slate-300 transition-colors font-semibold underline decoration-slate-600 underline-offset-4;
+}
+.prose ul, .prose ol {
+  @apply mb-6 pl-6 space-y-2 marker:text-slate-500;
+}
+.prose ul { @apply list-disc; }
+.prose ol { @apply list-decimal; }
+.prose blockquote {
+  @apply border-l-4 border-slate-500 pl-5 py-2 bg-slate-900/50 italic text-slate-400 my-6 rounded-r-lg;
+}
+
+/* Scrollbar styling - Monochrome */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-[#0A0A0A];
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-none hover:bg-slate-500 transition-colors;
+}
