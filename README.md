@@ -62,39 +62,5 @@ To run this project locally on your machine:
 
 ### 2. Clone the Repository
 ```bash
-git clone <your-repository-url>
-cd course-builder
-```
-
-### 3. Backend Setup
-Navigate into the backend directory and install dependencies:
-```bash
-cd backend
-npm install
-```
-Create a `.env` file in the `/backend` folder with the following credentials:
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_super_secret_key
-GEMINI_API_KEY=your_gemini_api_key
-```
-Start the backend server:
-```bash
-npm run dev
-```
-
-### 4. Frontend Setup
-Open a new terminal, navigate to the frontend directory, and install dependencies:
-```bash
-cd frontend
-npm install
-```
-Start the Vite development server:
-```bash
-npm run dev
-```
-
-Your application will now be running at `http://localhost:5173`!
-
----
+git clone [https://github.com/VaiAnna30/AI-Course-Builder.git](https://github.com/VaiAnna30/AI-Course-Builder.git)
+cd AI-Course-Builder
