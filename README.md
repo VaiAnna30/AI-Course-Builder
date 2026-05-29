@@ -98,6 +98,3 @@ npm run dev
 Your application will now be running at `http://localhost:5173`!
 
 ---
-
-## 🛡️ License
-This project is open source and available under the [MIT License](LICENSE).

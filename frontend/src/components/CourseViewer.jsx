@@ -33,7 +33,7 @@ const CourseViewer = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/courses/${id}`);
+        const response = await axios.get(`/api/courses/${id}`);
         setCourse(response.data);
         if (response.data.modules.length > 0 && response.data.modules[0].chapters.length > 0) {
           handleChapterSelect(response.data.modules[0].chapters[0]._id, response.data);
@@ -86,7 +86,7 @@ const CourseViewer = () => {
     setIsGenerating(true);
 
     const token = localStorage.getItem('token');
-    const eventSource = new EventSource(`http://localhost:5000/api/courses/${id}/chapter/${chapterId}/stream?token=${token}`);
+    const eventSource = new EventSource(`/api/courses/${id}/chapter/${chapterId}/stream?token=${token}`);
     let accumulatedContent = '';
 
     eventSource.onmessage = (event) => {
@@ -100,7 +100,7 @@ const CourseViewer = () => {
       if (data.done) {
         eventSource.close();
         setIsGenerating(false);
-        axios.get(`http://localhost:5000/api/courses/${id}`).then(res => setCourse(res.data));
+        axios.get(`/api/courses/${id}`).then(res => setCourse(res.data));
       } else {
         accumulatedContent += data.text;
         setContentStream(accumulatedContent);
@@ -116,11 +116,11 @@ const CourseViewer = () => {
   const markChapterComplete = async () => {
     setActionLoading(true);
     try {
-      await axios.put(`http://localhost:5000/api/courses/${id}/chapter/${activeChapterId}/complete`);
-      const response = await axios.post(`http://localhost:5000/api/courses/${id}/chapter/${activeChapterId}/quiz`);
+      await axios.put(`/api/courses/${id}/chapter/${activeChapterId}/complete`);
+      const response = await axios.post(`/api/courses/${id}/chapter/${activeChapterId}/quiz`);
       setCurrentQuizData(response.data);
       setShowQuiz(true);
-      const courseRes = await axios.get(`http://localhost:5000/api/courses/${id}`);
+      const courseRes = await axios.get(`/api/courses/${id}`);
       setCourse(courseRes.data);
     } catch (err) {
       console.error(err);
@@ -133,7 +133,7 @@ const CourseViewer = () => {
   const startFinalQuiz = async () => {
     setActionLoading(true);
     try {
-      const response = await axios.post(`http://localhost:5000/api/courses/${id}/final-quiz`);
+      const response = await axios.post(`/api/courses/${id}/final-quiz`);
       setCurrentQuizData(response.data);
       setIsFinalQuiz(true);
       setShowQuiz(true);
@@ -150,7 +150,7 @@ const CourseViewer = () => {
     if (isFinalQuiz) {
       setActionLoading(true);
       try {
-        const response = await axios.post(`http://localhost:5000/api/courses/${id}/award-badge`);
+        const response = await axios.post(`/api/courses/${id}/award-badge`);
         setEarnedBadge(response.data.badge);
       } catch (err) {
         console.error(err);
@@ -171,7 +171,7 @@ const CourseViewer = () => {
     setAskingDoubt(true);
 
     try {
-      const response = await axios.post(`http://localhost:5000/api/courses/${id}/chapter/${activeChapterId}/doubt`, {
+      const response = await axios.post(`/api/courses/${id}/chapter/${activeChapterId}/doubt`, {
         question: userQuestion
       });
       setDoubts(prev => [...prev, { role: 'ai', text: response.data.answer }]);

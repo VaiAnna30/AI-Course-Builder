@@ -16,7 +16,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/courses/my-courses');
+        const response = await axios.get('/api/courses/my-courses');
         setCourses(response.data);
       } catch (error) {
         console.error('Error fetching courses:', error);
@@ -43,7 +43,7 @@ const Dashboard = () => {
     if (!courseToDelete) return;
     setIsDeleting(true);
     try {
-      await axios.delete(`http://localhost:5000/api/courses/${courseToDelete._id}`);
+      await axios.delete(`/api/courses/${courseToDelete._id}`);
       setCourses(courses.filter(c => c._id !== courseToDelete._id));
       setDeleteModalOpen(false);
       setCourseToDelete(null);

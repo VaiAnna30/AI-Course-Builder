@@ -14,7 +14,7 @@ const SyllabusEditor = () => {
   useEffect(() => {
     const fetchCourse = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/courses/${id}`);
+        const response = await axios.get(`/api/courses/${id}`);
         setCourse(response.data);
       } catch (error) {
         console.error(error);
@@ -73,7 +73,7 @@ const SyllabusEditor = () => {
     }
     setSaving(true);
     try {
-      await axios.put(`http://localhost:5000/api/courses/${id}/syllabus`, {
+      await axios.put(`/api/courses/${id}/syllabus`, {
         title: course.title,
         modules: course.modules
       });
